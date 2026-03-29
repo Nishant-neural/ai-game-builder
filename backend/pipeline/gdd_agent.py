@@ -19,7 +19,7 @@ Return ONLY valid JSON:
     try:
         return json.loads(output)
     except:
-        # fallback: extract JSON
+        
         start = output.find("{")
         end = output.rfind("}") + 1
         return json.loads(output[start:end])
