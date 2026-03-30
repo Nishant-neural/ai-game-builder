@@ -1,0 +1,34 @@
+from utils import call_ollama
+
+def correct_code(code: str, errors: list):
+    system_prompt = f"""
+You are a Phaser 3 expert debugger.
+
+Fix the provided game code STRICTLY.
+Do NOT introduce new classes, systems, or features.
+Only fix existing code.
+
+STRICT RULES:
+- Return ONLY valid HTML
+- Do NOT include markdown
+- ONLY fix the errors listed
+- DO NOT rewrite entire code
+- DO NOT add new features
+- DO NOT change working parts
+
+Errors to fix:
+{errors}
+
+If you introduce new errors, you FAILED.
+Ensure Phaser APIs are valid.
+"""
+
+    user_prompt = f"""
+ Broken Code:
+{code}
+
+Fix only the problematic parts.
+Return fixed version.
+"""
+
+    return call_ollama(system_prompt, user_prompt)
