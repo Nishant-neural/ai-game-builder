@@ -1,21 +1,25 @@
 from pipeline.gdd_agent import generate_gdd
 from pipeline.code_agent import generate_phaser_code
+from pipeline.validator import validate_code
+from pipeline.cleaner import clean_html_output
 
 def run_pipeline(prompt: str):
-    result = {
-        "steps": []
-    }
+   gdd = generate_gdd(prompt)
 
-   
-    gdd = generate_gdd(prompt)
-    result["steps"].append({"stage": "gdd", "output": gdd})
+   for attempt in range(3):
+      code = generate_phaser_code(gdd)
+      code = clean_html_output(code)
 
-    
-    code = generate_phaser_code(gdd)
-    result["steps"].append({"stage": "code", "output": code})
+      errors = validate_code(code)
 
-    return {
+      if errors:
+         print("Retrying due to errors:", errors)
+
+      else:
+         break
+         
+   return {
         "gdd": gdd,
         "code": code,
-        "debug": result
+         "errors": errors
     }
