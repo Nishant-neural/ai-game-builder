@@ -1,7 +1,7 @@
 from pipeline.gdd_agent import generate_gdd
 from pipeline.code_agent import generate_phaser_code
 from pipeline.validator import validate_code
-from pipeline.cleaner import clean_html_output
+from utility.cleaner import clean_html_output
 from pipeline.correction_agent import correct_code
 
 def run_pipeline(prompt: str):

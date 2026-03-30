@@ -1,6 +1,9 @@
-from utils import call_ollama
+from utility.utils import call_ollama
+from rag.retreiver import retrieve_context
 
 def correct_code(code: str, errors: list , prev_errors: list):
+    context = retrieve_context(" ".join(errors))
+
     system_prompt = f"""
 You are a Phaser 3 expert debugger.
 
@@ -15,6 +18,8 @@ STRICT RULES:
 - DO NOT rewrite entire code
 - DO NOT add new features
 - DO NOT change working parts
+
+CONTEXT : {context}
 
 Errors to fix:
 {errors}

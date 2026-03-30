@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pipeline.builder import run_pipeline
-from schemas import GameRequest
+from utility.schemas import GameRequest
 
 app = FastAPI()
 

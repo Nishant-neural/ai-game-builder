@@ -1,5 +1,5 @@
 import json
-from utils import call_ollama
+from utility.utils import call_ollama
 
 def generate_gdd(prompt: str):
     system_prompt = """
