@@ -11,13 +11,19 @@ def run_pipeline(prompt: str):
    code = generate_phaser_code(gdd)
    code = clean_html_output(code)
    
+   prev_errors = None
+   
    for attempt in range(3):
       errors = validate_code(code)
 
+      if prev_errors == errors:
+         print(" No improvement — forcing stricter correction")
+
       if errors:
          print(f"Attempt number:{attempt+1} , fixing errors:", errors)
-         code = correct_code(code, errors)
+         code = correct_code(code, errors , prev_errors)
          code = clean_html_output(code)
+         prev_errors = errors
         
       else:
          print("code is valid:::")

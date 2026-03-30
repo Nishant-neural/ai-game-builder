@@ -1,6 +1,6 @@
 from utils import call_ollama
 
-def correct_code(code: str, errors: list):
+def correct_code(code: str, errors: list , prev_errors: list):
     system_prompt = f"""
 You are a Phaser 3 expert debugger.
 
@@ -21,6 +21,12 @@ Errors to fix:
 
 If you introduce new errors, you FAILED.
 Ensure Phaser APIs are valid.
+"""
+    if errors == prev_errors:
+        system_prompt += """
+You FAILED to fix errors previously.
+Now STRICTLY fix ONLY listed issues.
+Do NOT rewrite code.
 """
 
     user_prompt = f"""
