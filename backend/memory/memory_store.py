@@ -12,6 +12,8 @@ def load_memory():
 
 
 def save_memory(memory):
+    os.makedirs("memory", exist_ok=True)
+    
     with open(MEMORY_FILE, "w") as f:
         json.dump(memory, f, indent=2)
 
