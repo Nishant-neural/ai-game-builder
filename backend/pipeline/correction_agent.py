@@ -1,7 +1,9 @@
 from utility.utils import call_ollama
 from rag.retreiver import retrieve_context
+from memory.memory_store import load_memory
 
 def correct_code(code: str, errors: list , prev_errors: list):
+    memory = load_memory()
     context = retrieve_context(" ".join(errors))
 
     system_prompt = f"""
@@ -20,6 +22,9 @@ STRICT RULES:
 - DO NOT change working parts
 
 CONTEXT : {context}
+
+Past mistakes:
+{memory["errors"]}
 
 Errors to fix:
 {errors}
