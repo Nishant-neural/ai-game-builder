@@ -4,7 +4,7 @@ from utility.utils import call_ollama
 def generate_gdd(prompt: str):
     system_prompt = """
 You are a game designer.
-
+Strictly return JSON only.
 Return ONLY valid JSON:
 {
   "genre": "",

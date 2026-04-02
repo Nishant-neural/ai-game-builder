@@ -4,6 +4,16 @@ from pipeline.validator import validate_code
 from utility.cleaner import clean_html_output
 from pipeline.correction_agent import correct_code
 from memory.memory_store import load_memory , save_memory, add_error
+from pipeline.regeneration_agent import regenerate_code
+
+def should_rebuild(errors, prev_errors):
+    if len(errors) > 4:
+        return True
+
+    if prev_errors and set(errors) != set(prev_errors):
+        return True
+
+    return False
 
 def run_pipeline(prompt: str):
    memory = load_memory()
@@ -22,8 +32,14 @@ def run_pipeline(prompt: str):
          print("Success")
          break
 
-      if prev_errors == errors:
-         print(" No improvement — forcing stricter correction")
+      if should_rebuild(errors, prev_errors):
+        print(" Switching to REBUILD mode")
+
+        code = regenerate_code(gdd, errors)
+
+      else:
+        print(" PATCH mode")
+        code = correct_code(code, errors, prev_errors)
 
       for err in errors:
             add_error(memory, err)

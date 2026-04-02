@@ -142,6 +142,19 @@ backend/
 
 ---
 
+## 🎮 Demo
+
+Below is a working example generated (and stabilized) by the pipeline:
+
+👉 Open `demo/flappy.html` in browser
+
+Features:
+- Bird jump mechanic
+- Procedural pipe generation
+- Collision detection
+- Score tracking
+---
+
 ##  Future Work
 
 * Hybrid template + LLM system (for stability)

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Pipe Jump Game</title>
+ <script src="https://cdn.jsdelivr.net/npm/phaser@3.50.1/dist/phaser.min.js"></script>
+</head>
+<body>
+
+<script>
+ let player;
+ let pipes;
+ let score = 0;
+ let scoreText;
+
+ let game = new Phaser.Game({
+ type: Phaser.AUTO,
+ width: 800,
+ height: 600,
+ physics: {
+ default: 'arcade',
+ arcade: {
+ gravity: { y: 300 }
+ }
+ },
+ scene: [
+ {
+ preload: preload,
+ create: create,
+ update: update
+ }
+ ]
+ });
+
+ function preload() {
+ 
+ this.load.image('pipe', 'https://labs.phaser.io/assets/sprites/block.png');
+ this.load.image('player', 'https://labs.phaser.io/assets/sprites/bird.png');
+ this.load.image('coin', 'https://labs.phaser.io/assets/sprites/gold_1.png');
+ }
+
+ function create() {
+
+ 
+ pipes = this.physics.add.group();
+
+ let pipePositions = [
+ {x: 400, y: 300},
+ {x: 700, y: 400}
+ ];
+
+ for (let pipe of pipePositions) {
+ let p = pipes.create(pipe.x, pipe.y, 'pipe');
+ p.setImmovable(true);
+ p.body.allowGravity = false;
+ p.setVelocityX(-200);
+ }
+
+ 
+ player = this.physics.add.sprite(100, 300, 'player');
+ player.setCollideWorldBounds(true);
+
+
+ this.physics.add.collider(player, pipes, gameOver, null, this);
+
+
+ let coins = this.physics.add.group();
+
+ for (let i = 0; i < 2; i++) {
+ coins.create(Math.random()*800, Math.random()*400, 'coin');
+ }
+
+ 
+ scoreText = this.add.text(10, 10, 'Score: 0', {fill: '#000'});
+
+
+ this.input.on('pointerdown', () => {
+ player.setVelocityY(-300);
+ });
+
+ }
+
+ function update() {
+
+ 
+ if (this.input.activePointer.isDown()) {
+ player.setVelocityY(-300);
+ }
+
+ 
+ score += 0.01;
+ scoreText.setText('Score: ' + Math.floor(score));
+
+
+ if (player.y > 600 || player.y < 0) {
+ this.scene.restart();
+ }
+
+ }
+
+ function gameOver() {
+ this.scene.restart();
+ }
+</script>
+
+</body>
+</html>

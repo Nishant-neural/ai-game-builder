@@ -21,6 +21,12 @@ STRICT RULES:
 - DO NOT add new features
 - DO NOT change working parts
 
+DO NOT:
+- remove physics system
+- change scene structure
+- introduce new classes
+- modify config unless required
+
 CONTEXT : {context}
 
 Past mistakes:
@@ -29,8 +35,8 @@ Past mistakes:
 Errors to fix:
 {errors}
 
-If you introduce new errors, you FAILED.
-Ensure Phaser APIs are valid.
+If you rewrite large sections , you FAILED.
+
 """
     if errors == prev_errors:
         system_prompt += """

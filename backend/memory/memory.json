@@ -1,4 +1,23 @@
 {
-  "errors": [],
+  "errors": [
+    "LLM validation failed",
+    "Scene defined after config (wrong order)",
+    "Missing HTML structure",
+    "Use this.physics.add.sprite for game objects",
+    "Missing preload function for assets",
+    "Score not updated properly",
+    "wrong physics usage: collision in input",
+    "physics.arcade.collision defined but not used",
+    "undefined",
+    "Phaser.Game is not defined",
+    "Game object 'bird' missing physics",
+    "unknown physics engine 'arcade' used with default gravity",
+    "invalid event callback 'generatePipe' in update loop",
+    "Missing logic in generatePipe function to handle pipe collision detection",
+    "Missing logic in update function to handle player input for jumping",
+    "Missing gravity on pipe sprite",
+    "Invalid event delay calculation",
+    "Game config missing scene assignment"
+  ],
   "fixes": []
 }

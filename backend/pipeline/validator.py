@@ -21,11 +21,20 @@ def check_syntax(code: str):
     if "```" in code:
         errors.append("Remove markdown formatting")
 
-    if "<html>" not in code.lower():
+    if "<html" not in code.lower():
         errors.append("Missing HTML structure")
 
     if "new Phaser.Game" not in code:
         errors.append("Missing Phaser game initialization")
+
+    if "scene:" not in code:
+        errors.append("Game config missing scene assignment")
+
+    if "preload(" not in code:
+        errors.append("Missing preload function for assets")
+
+    if "this.cursors" in code and "createCursorKeys" not in code:
+        errors.append("cursors used but not initialized")
 
     return errors
 
