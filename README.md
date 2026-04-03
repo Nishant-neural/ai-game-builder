@@ -1,4 +1,4 @@
-# AI Game Builder — LLM Pipeline with Self-Correction, RAG & Memory
+# AI Game Builder - LLM Pipeline with Self-Correction, RAG & Memory
 
 ## Overview
 
@@ -32,15 +32,15 @@ This project treats code generation as a **multi-stage pipeline** instead of a s
 
 ```
 User Prompt
-   ↓
+   ->
 Game Design Generator (GDD)
-   ↓
+   ->
 Code Generator (Phaser HTML)
-   ↓
+   ->
 Validator (detects errors)
-   ↓
+   ->
 LLM Correction Loop
-   ↓
+   ->
 Memory + RAG (improves future runs)
 ```
 
@@ -48,25 +48,20 @@ Memory + RAG (improves future runs)
 
 ## Key Features
 
-*  **Iterative Correction Loop**
-
-  * Automatically fixes errors using LLM feedback
-*  **RAG Integration**
-
-  * Injects Phaser rules to reduce hallucinations
-*  **Memory System**
-
-  * Stores past errors to improve future generations
-*  **Validator**
-
-  * Detects incorrect APIs, syntax issues, and bad patterns
-*  **Structured Pipeline**
-
-  * Uses Game Design Document (GDD) as intermediate representation
+* **Iterative Correction Loop**
+  Automatically fixes errors using LLM feedback.
+* **RAG Integration**
+  Injects Phaser rules to reduce hallucinations.
+* **Memory System**
+  Stores past errors to improve future generations.
+* **Validator**
+  Detects incorrect APIs, syntax issues, and bad patterns.
+* **Structured Pipeline**
+  Uses a Game Design Document (GDD) as an intermediate representation.
 
 ---
 
-##  Example Output
+## Example Output
 
 ### Generated GDD
 
@@ -79,16 +74,16 @@ Memory + RAG (improves future runs)
 * Syntax error (`this physics.add.sprite`)
 * Invalid methods (`setBodyImpulse`, `colliderect`)
 
-See actual output: 
+See actual output:
 
 ---
 
-##  Correction Loop Behavior
+## Correction Loop Behavior
 
 ```
-Attempt 1 → Error detected
-Attempt 2 → Same error persists
-Attempt 3 → Still unresolved
+Attempt 1 -> Error detected
+Attempt 2 -> Same error persists
+Attempt 3 -> Still unresolved
 ```
 
 This revealed a key insight:
@@ -97,7 +92,7 @@ This revealed a key insight:
 
 ---
 
-##  Key Learnings
+## Key Learnings
 
 * LLMs are unreliable in unconstrained generation
 * Validation + feedback loops are essential
@@ -107,15 +102,15 @@ This revealed a key insight:
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
-- Code generation not fully reliable
-- Requires multiple retries
-- Limited Phaser coverage
+* Code generation is not fully reliable
+* Multiple retries may be required
+* Phaser coverage is still limited
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 * **Backend:** FastAPI
 * **LLM Runtime:** Ollama (local models like Llama3, CodeLlama)
@@ -124,38 +119,57 @@ This revealed a key insight:
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
-backend/
-├── pipeline/
-│   ├── orchestrator.py
-│   ├── gdd_agent.py
-│   ├── code_agent.py
-│   ├── correction_agent.py
-│   ├── validator.py
-│
-├── rag/
-├── memory/
-├── utils.py
+ai-game-builder/
+|-- backend/
+|   |-- main.py
+|   |-- requirements.txt
+|   |-- demo/
+|   |   `-- flappy.html
+|   |-- memory/
+|   |   |-- memory.json
+|   |   |-- memory_store.py
+|   |   `-- __init__.py
+|   |-- pipeline/
+|   |   |-- builder.py
+|   |   |-- code_agent.py
+|   |   |-- correction_agent.py
+|   |   |-- gdd_agent.py
+|   |   |-- llm_validator.py
+|   |   |-- regeneration_agent.py
+|   |   `-- validator.py
+|   |-- rag/
+|   |   |-- knowledge.py
+|   |   `-- retreiver.py
+|   `-- utility/
+|       |-- cleaner.py
+|       |-- schemas.py
+|       `-- utils.py
+`-- README.md
 ```
 
 ---
 
-## 🎮 Demo
+## Demo
 
-Below is a working example generated (and stabilized) by the pipeline:
-
-👉 Open `demo/flappy.html` in browser
+Below is a working example generated  by the pipeline:
+![alt text](image-1.png)
+![alt text](image.png)
+Open `backend/demo/flappy.html` in a browser.
 
 Features:
-- Bird jump mechanic
-- Procedural pipe generation
-- Collision detection
-- Score tracking
+* Bird jump mechanic
+* Procedural pipe generation
+* Collision detection
+* Score tracking
+
+!The assets were changed to work on development browser.
+This is the bext case output. 
 ---
 
-##  Future Work
+## Future Work
 
 * Hybrid template + LLM system (for stability)
 * Vector database for advanced RAG
@@ -165,23 +179,10 @@ Features:
 
 ---
 
-##  Why This Project Matters
-
-This project explores how to build **reliable AI systems** using:
-
-* Structured pipelines
-* Feedback loops
-* Self-correction mechanisms
-
-It moves beyond simple prompt engineering into **system design for AI-assisted programming**.
-
----
-
-##  Author
+## Author
 
 Nishant Tiwari
 
 ---
 
-##  If you found this interesting, consider starring the repo!
-
+## If you found this interesting, consider starring the repo!

@@ -33,9 +33,9 @@
 
  function preload() {
  
- this.load.image('pipe', 'https://labs.phaser.io/assets/sprites/block.png');
- this.load.image('player', 'https://labs.phaser.io/assets/sprites/bird.png');
- this.load.image('coin', 'https://labs.phaser.io/assets/sprites/gold_1.png');
+ this.load.image('pipe', 'assets/pipe.png');
+ this.load.image('player', 'assets/bird.png');
+ this.load.image('coin', 'assets/coin.png');
  }
 
  function create() {
@@ -52,7 +52,7 @@
  let p = pipes.create(pipe.x, pipe.y, 'pipe');
  p.setImmovable(true);
  p.body.allowGravity = false;
- p.setVelocityX(-200);
+ p.setVelocityX(-50);
  }
 
  
@@ -81,8 +81,17 @@
 
  function update() {
 
- 
- if (this.input.activePointer.isDown()) {
+ pipes.children.iterate(function(pipe) {
+ if (pipe.x < -50) {
+
+  
+  pipe.x = 800;
+
+
+  pipe.y = Phaser.Math.Between(100, 500);
+ }
+});
+ if (this.input.activePointer.isDown) {
  player.setVelocityY(-300);
  }
 
