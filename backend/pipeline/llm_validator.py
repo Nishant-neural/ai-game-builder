@@ -17,7 +17,7 @@ def filter_errors(errors):
 
 def llm_validate(code: str):
     system_prompt = """
-You are a Phaser game engine expert.
+You are a Phaser 3 game engine expert.
 
 Analyze the code and find issues.
 

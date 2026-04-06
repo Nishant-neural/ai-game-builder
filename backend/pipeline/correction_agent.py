@@ -14,12 +14,13 @@ Do NOT introduce new classes, systems, or features.
 Only fix existing code.
 
 STRICT RULES:
-- Return ONLY valid HTML
+- Output only the corrected HTML, no explanation
 - Do NOT include markdown
 - ONLY fix the errors listed
 - DO NOT rewrite entire code
 - DO NOT add new features
 - DO NOT change working parts
+- Replace invalid methods with their correct Phaser 3 equivalents
 
 DO NOT:
 - remove physics system
@@ -33,7 +34,7 @@ Past mistakes:
 {memory["errors"]}
 
 Errors to fix:
-{errors}
+{chr(10).join(f"- {e}" for e in errors)}
 
 If you rewrite large sections , you FAILED.
 

@@ -1,7 +1,7 @@
 from utility.utils import call_ollama
 def regenerate_code(gdd, errors):
     system_prompt = f"""
-You are a Phaser expert.
+You are a Phaser 3 expert.
 
 The previous code is structurally broken.
 
