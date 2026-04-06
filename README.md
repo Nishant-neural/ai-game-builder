@@ -155,8 +155,10 @@ ai-game-builder/
 ## Demo
 
 Below is a working example generated  by the pipeline:
-![alt text](image-1.png)
-![alt text](image.png)
+<img width="1254" height="943" alt="image" src="https://github.com/user-attachments/assets/c1516eed-69fb-479d-9ae9-16f69d940f8b" />
+<img width="1156" height="760" alt="image" src="https://github.com/user-attachments/assets/71f8f0f8-6b03-492f-a47d-564974fe1923" />
+
+
 Open `backend/demo/flappy.html` in a browser.
 
 Features:
