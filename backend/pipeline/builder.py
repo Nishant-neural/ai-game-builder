@@ -27,6 +27,8 @@ def run_pipeline(prompt: str):
    
    for attempt in range(3):
       errors = validate_code(code)
+      for err in errors:
+            add_error(memory, err)
 
       if not errors:
          print("Success")
@@ -34,19 +36,13 @@ def run_pipeline(prompt: str):
 
       if should_rebuild(errors, prev_errors):
         print(" Switching to REBUILD mode")
-
         code = regenerate_code(gdd, errors)
 
       else:
         print(" PATCH mode")
         code = correct_code(code, errors, prev_errors)
 
-      for err in errors:
-            add_error(memory, err)
-
-      
       print(f"Attempt number:{attempt+1} , fixing errors:", errors)
-      code = correct_code(code, errors , prev_errors)
       code = clean_html_output(code)
       prev_errors = errors
         

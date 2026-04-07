@@ -1,5 +1,5 @@
 from utility.utils import call_ollama
-
+import json
 def filter_errors(errors):
     allowed = [
         "physics",
@@ -44,8 +44,9 @@ Code:
 """
 
     output = call_ollama(system_prompt, user_prompt)
-    output = filter_errors(output)
+   
     try:
-        return eval(output) 
+        output = json.loads(output)
+        return filter_errors(output)
     except:
         return ["LLM validation failed"]

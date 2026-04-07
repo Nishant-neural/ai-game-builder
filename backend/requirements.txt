@@ -1,2 +1,4 @@
-fast api standard package
-requests download
+fastapi
+uvicorn[standard]
+requests
+pydantic
